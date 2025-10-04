@@ -1,0 +1,8 @@
+@"
+vendor/
+/composer.lock
+.env
+/cache/
+*.log
+.DS_Store
+"@ | Out-File -FilePath ".gitignore" -Encoding UTF8

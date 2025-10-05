@@ -1,6 +1,6 @@
 <?php $this->layout('layout', ['title' => $title]) ?>
 <?php $this->start('extra_styles') ?>
-<link rel="stylesheet" href="templates\css\homepage.css">
+<link rel="stylesheet" href="/templates/css/homepage.css">
 <?php $this->stop() ?>
 <?php $this->start('main_content') ?>
 
@@ -34,15 +34,58 @@
                             <div class="card h-100 product-card shadow-sm">
                                 <div class="position-relative">
                                     <span class="badge bg-danger position-absolute top-0 start-0 m-2">Novità</span>
-                                    <img src="<?= $this->e($product['immagine']) ?>" class="card-img-top" alt="<?= $this->e($product['nome']) ?>">
+                                    <img src="<?= $this->e($product['image']) ?>" class="card-img-top" alt="<?= $this->e($product['nome']) ?>">
                                 </div>
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title"><?= $this->e($product['nome']) ?> <?= $this->e($product['volume']) ?></h5>
-                                    <p class="card-text flex-grow-1"><?= $this->e($product['descrizione'] ?? 'Descrizione non disponibile') ?></p>
                                     <div class="mt-auto">
                                         <div class="price h4 text-primary mb-3">€<?= number_format($product['prezzo'], 2) ?></div>
                                         <div class="d-grid">
-                                            <a href="prodotto.php?id=<?= $this->e($product['ID']) ?>" class="btn btn-primary">Dettagli</a>
+                                            <a href="prodottoSingolo.php?id=<?= $this->e($product['ID']) ?>" class="btn btn-primary">Dettagli</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <div class="col-12 text-center py-5">
+                        <div class="text-muted">
+                            <i class="bi bi-inbox display-1"></i>
+                            <h3>Nessuna novità al momento</h3>
+                            <p>Torna presto per scoprire le nuove arriv!</p>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </section>
+
+ 
+
+     <!-- Carte Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="mb-0">🔥 Carte</h2>
+                <a href="#" class="btn btn-outline-primary">Vedi tutto</a>
+            </div>
+
+            <div class="row g-4">
+                <?php if (!empty($novita_products)): ?>
+                    <?php foreach ($novita_products as $product): ?>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="card h-100 product-card shadow-sm">
+                                <div class="position-relative">
+                                    <span class="badge bg-danger position-absolute top-0 start-0 m-2">Novità</span>
+                                    <img src="<?= $this->e($product['image']) ?>" class="card-img-top" alt="<?= $this->e($product['nome']) ?>">
+                                </div>
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title"><?= $this->e($product['nome']) ?> <?= $this->e($product['volume']) ?></h5>
+                                    <div class="mt-auto">
+                                        <div class="price h4 text-primary mb-3">€<?= number_format($product['prezzo'], 2) ?></div>
+                                        <div class="d-grid">
+                                            <a href="prodottoSingolo.php?id=<?= $this->e($product['ID']) ?>" class="btn btn-primary">Dettagli</a>
                                         </div>
                                     </div>
                                 </div>

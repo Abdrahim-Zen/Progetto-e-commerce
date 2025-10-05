@@ -12,7 +12,7 @@ class prodottoSingoloController{
             
             // Aggiungi dati globali a tutti i template
             $this->templates->addData([
-                'base_url' => '/Progetto/public/',
+                'base_url' => '/public/index.php',
                 'site_name' => 'Manga Xeno',
                 'current_year' => date('Y')
             ]);
@@ -25,8 +25,32 @@ class prodottoSingoloController{
         }
     }
 
-    public function getProdottoData(){
+    public function getProdottoData($id){
+         $prodotto= $this->db->getProductById($id);
+         return [
+            'title' => 'Prodotto - Mio Shop',
+            'prodotto' => $prodotto,
+            'has_prodotto' => !empty($prodotto)
+         ];
+    }
 
+    public function render($id) {
+        $data = $this->getProdottoData($id);
+        return $this->templates->render('prodottoSingolo', $data);
+    }
+
+    public function display($id) {
+        try {
+            echo $this->render($id);
+        } catch (Exception $e) {
+            echo "Errore nel rendering: " . $e->getMessage();
+        }
+    }
+    
+    public function __destruct() {
+        if ($this->db) {
+            $this->db->close();
+        }
     }
 
     

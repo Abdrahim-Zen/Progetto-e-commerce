@@ -13,7 +13,7 @@ class HomepageController {
             
             // Aggiungi dati globali a tutti i template
             $this->templates->addData([
-                'base_url' => '/Progetto/public/',
+                'base_url' => '/public/index.php',
                 'site_name' => 'Manga Xeno',
                 'current_year' => date('Y')
             ]);

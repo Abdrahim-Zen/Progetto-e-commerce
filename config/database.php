@@ -19,7 +19,7 @@ class Database
 
     public function getProductsByCategory($category, $limit = 8)
     {
-        $sql = "SELECT * FROM prodotti WHERE categoria = ? ORDER BY id DESC LIMIT ?";
+        $sql = "SELECT * FROM manga WHERE categoria = ? ORDER BY id DESC LIMIT ?";
         $stmt = $this->conn->prepare($sql);
 
         if (!$stmt) {

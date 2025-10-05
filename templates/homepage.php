@@ -1,6 +1,9 @@
 <?php $this->layout('layout', ['title' => $title]) ?>
-
+<?php $this->start('extra_styles') ?>
+<link rel="stylesheet" href="templates\css\homepage.css">
+<?php $this->stop() ?>
 <?php $this->start('main_content') ?>
+
 
 <!-- Hero Section -->
 <section class="hero bg-primary text-white py-5">
@@ -9,9 +12,6 @@
             <div class="col-lg-6">
                 <h1 class="display-4 fw-bold">Benvenuto nel nostro Shop</h1>
                 <p class="lead">Scopri le ultime novità in manga, card game e figure collezionabili</p>
-            </div>
-            <div class="col-lg-6 text-center">
-                <i class="bi bi-shop-window display-1"></i>
             </div>
         </div>
     </div>
@@ -37,7 +37,7 @@
                                     <img src="<?= $this->e($product['immagine']) ?>" class="card-img-top" alt="<?= $this->e($product['nome']) ?>">
                                 </div>
                                 <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title"><?= $this->e($product['nome']) ?></h5>
+                                    <h5 class="card-title"><?= $this->e($product['nome']) ?> <?= $this->e($product['volume']) ?></h5>
                                     <p class="card-text flex-grow-1"><?= $this->e($product['descrizione'] ?? 'Descrizione non disponibile') ?></p>
                                     <div class="mt-auto">
                                         <div class="price h4 text-primary mb-3">€<?= number_format($product['prezzo'], 2) ?></div>

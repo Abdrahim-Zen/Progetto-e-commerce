@@ -16,8 +16,33 @@
 </head>
 
 <body>
+    <?php
+    // Avvia la sessione se non è già attiva
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    
+    // Prepara i dati per l'header - usa valori di default
+    $base_url = 'index.php';
+    $site_name = 'Manga Xeno';
+    
+    // Prepara dati utente
+    $user = null;
+    if (isset($_SESSION['user_id'])) {
+        $user = [
+            'id' => $_SESSION['user_id'],
+            'name' => $_SESSION['user_name'] ?? 'Utente',
+            'email' => $_SESSION['user_email'] ?? ''
+        ];
+    }
+    ?>
+
     <!-- Header -->
-    <?= $this->fetch('partials/header') ?>
+    <?= $this->fetch('partials/header', [
+        'base_url' => $base_url,
+        'site_name' => $site_name, 
+        'user' => $user
+    ]) ?>
 
     <!-- Main Content -->
     <main>

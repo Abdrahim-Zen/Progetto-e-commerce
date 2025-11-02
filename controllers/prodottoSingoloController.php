@@ -5,14 +5,20 @@ require_once __DIR__ . '/../vendor/autoload.php';
 class prodottoSingoloController{ 
     private $templates;
     private $db; 
+    
     public function __construct() {
         try {
+            // AVVIA LA SESSIONE PRIMA DI TUTTO
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+
             // Inizializza Plates
             $this->templates = new League\Plates\Engine(__DIR__ . '/../templates');
             
             // Aggiungi dati globali a tutti i template
             $this->templates->addData([
-                'base_url' => '/public/index.php',
+                'base_url' => 'index.php', // CAMBIATO: rimosso /public/
                 'site_name' => 'Manga Xeno',
                 'current_year' => date('Y')
             ]);
@@ -26,12 +32,12 @@ class prodottoSingoloController{
     }
 
     public function getProdottoData($id){
-         $prodotto= $this->db->getProductById($id);
-         return [
-            'title' => 'Prodotto - Mio Shop',
+        $prodotto = $this->db->getProductById($id);
+        return [
+            'title' => $prodotto['nome'] . ' - Manga Xeno',
             'prodotto' => $prodotto,
             'has_prodotto' => !empty($prodotto)
-         ];
+        ];
     }
 
     public function render($id) {
@@ -52,7 +58,4 @@ class prodottoSingoloController{
             $this->db->close();
         }
     }
-
-    
-
 }

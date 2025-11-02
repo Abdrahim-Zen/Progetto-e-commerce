@@ -8,12 +8,17 @@ class HomepageController {
     
     public function __construct() {
         try {
+            // Avvia la sessione se non è già attiva
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+
             // Inizializza Plates
             $this->templates = new League\Plates\Engine(__DIR__ . '/../templates');
             
             // Aggiungi dati globali a tutti i template
             $this->templates->addData([
-                'base_url' => '/public/index.php',
+                'base_url' => 'index.php',
                 'site_name' => 'Manga Xeno',
                 'current_year' => date('Y')
             ]);
@@ -33,7 +38,7 @@ class HomepageController {
             $figureProducts = $this->db->getProductsByCategory('figure', 4);
             
             return [
-                'title' => 'Homepage - Mio Shop',
+                'title' => 'Manga Xeno - Homepage',
                 'novita_products' => $novitaProducts,
                 'cardgame_products' => $cardGameProducts,
                 'figure_products' => $figureProducts,
@@ -43,7 +48,7 @@ class HomepageController {
         } catch (Exception $e) {
             error_log("Errore caricamento dati: " . $e->getMessage());
             return [
-                'title' => 'Homepage - Mio Shop',
+                'title' => 'Manga Xeno - Homepage',
                 'novita_products' => [],
                 'cardgame_products' => [],
                 'figure_products' => [],
@@ -72,4 +77,3 @@ class HomepageController {
         }
     }
 }
-?>

@@ -79,10 +79,18 @@ foreign key (indirizzo_consegna) references indirizzo(indirizzo_id)
 );
 
 
+CREATE TABLE IF NOT EXISTS carrello (
+    ID INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    utente_id INT UNSIGNED NOT NULL,
+    prodotto_id INT UNSIGNED NOT NULL,
+    quantita INT NOT NULL DEFAULT 1,
+    aggiunto_il TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (utente_id) REFERENCES utente(ID),
+    FOREIGN KEY (prodotto_id) REFERENCES prodotti(ID)
+);
 
 
 
--- aggiungere carello
 
 create table Amministratore(
 ID INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,

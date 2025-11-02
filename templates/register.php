@@ -36,14 +36,14 @@
 <body>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div class="card login-card">
                     <div class="card-header login-header text-center py-3">
                         <h4 class="mb-0">
                             <i class="bi bi-controller me-2"></i>
                             Manga Xeno
                         </h4>
-                        <p class="mb-0 mt-1 opacity-75">Accedi al tuo account</p>
+                        <p class="mb-0 mt-1 opacity-75">Crea il tuo account</p>
                     </div>
                     
                     <div class="card-body p-4">
@@ -55,26 +55,37 @@
                             </div>
                         <?php endif; ?>
                         
-                        <form method="POST" action="auth.php?action=handleLogin">
+                        <form method="POST" action="auth.php?action=handleRegister">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Nome</label>
+                                    <input type="text" name="nome" class="form-control" placeholder="Il tuo nome" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Cognome</label>
+                                    <input type="text" name="cognome" class="form-control" placeholder="Il tuo cognome" required>
+                                </div>
+                            </div>
+                            
                             <div class="mb-3">
                                 <label class="form-label">Email</label>
-                                <input type="email" name="email" class="form-control" placeholder="Inserisci la tua email" required>
+                                <input type="email" name="email" class="form-control" placeholder="la-tua@email.com" required>
                             </div>
                             
                             <div class="mb-3">
                                 <label class="form-label">Password</label>
-                                <input type="password" name="password" class="form-control" placeholder="Inserisci la password" required>
+                                <input type="password" name="password" class="form-control" placeholder="Scegli una password" required>
                             </div>
                             
                             <button type="submit" class="btn btn-primary w-100 py-2 mb-3">
-                                <i class="bi bi-box-arrow-in-right me-2"></i>Accedi
+                                <i class="bi bi-person-plus me-2"></i>Crea Account
                             </button>
                         </form>
                         
                         <div class="text-center">
                             <p class="mb-2">
-                                <a href="auth.php?action=showRegister" class="text-decoration-none">
-                                    Non hai un account? Registrati
+                                <a href="auth.php?action=showLogin" class="text-decoration-none">
+                                    Hai già un account? Accedi
                                 </a>
                             </p>
                             <p class="mb-0">

@@ -2,7 +2,7 @@
 
 <?php $this->start('main_content') ?>
 <div class="container mt-4">
-    <h1 class="mb-4">Il tuo carrello</h1>
+    <h1 class="mb-4">Il tuo carrello </h1>
 
     <?php if (!empty($cart_items)): ?>
         <div class="row">
